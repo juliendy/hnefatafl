@@ -29,7 +29,7 @@ export default function Board(props: {
         if (item == 0) styles = styles + " bg-stone-100";
         if (item == 1) styles = styles + " bg-emerald-200";
         if (item == 2) styles = styles + " bg-rose-200";
-        if (item == 3) styles = styles + " bg-lime-200";
+        if (item == 3) styles = styles + " bg-yellow-200";
         if (item == -1) styles = styles + " bg-stone-200";
 
         if (
