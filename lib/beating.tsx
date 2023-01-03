@@ -5,11 +5,21 @@ export function checkBeating(
     whichTeamIsOn: number,
     newStone: Stone
 ) {
+    const kingPos: Stone = getKingPos(stones);
+    if (
+        (kingPos.row == 0 && kingPos.col == 0) ||
+        (kingPos.row == 0 && kingPos.col == stones.length - 1) ||
+        (kingPos.row == stones.length - 1 && kingPos.col == 0) ||
+        (kingPos.row == stones.length - 1 && kingPos.col == stones.length - 1)
+    ) {
+        // king has won!
+        return stones;
+    }
     let afterBeating: number[][] | number;
     afterBeating = checkSimpleBeating(stones, whichTeamIsOn, newStone);
     afterBeating = checkKing(afterBeating);
 
-    return (afterBeating);
+    return afterBeating;
 }
 
 function getKingPos(stones: number[][]) {
@@ -20,7 +30,7 @@ function getKingPos(stones: number[][]) {
         })
     );
 
-    return (kingPos);
+    return kingPos;
 }
 
 // if the king is surrounded by 4 sides, he's done
@@ -34,7 +44,7 @@ function checkKing(stones: number[][]) {
         stones[kingPos.row][kingPos.col - 1] == 2 &&
         stones[kingPos.row][kingPos.col + 1] == 2
     ) {
-        return (2); // team 2 has won!
+        return 2; // team 2 has won!
     }
 
     if (
@@ -43,7 +53,7 @@ function checkKing(stones: number[][]) {
         stones[kingPos.row][kingPos.col - 1] == 2 &&
         stones[kingPos.row][kingPos.col + 1] == 2
     ) {
-        return (2); // team 2 has won!
+        return 2; // team 2 has won!
     }
 
     if (
@@ -52,7 +62,7 @@ function checkKing(stones: number[][]) {
         stones[kingPos.row + 1][kingPos.col] == 2 &&
         stones[kingPos.row][kingPos.col + 1] == 2
     ) {
-        return (2); // team 2 has won!
+        return 2; // team 2 has won!
     }
 
     if (
@@ -61,17 +71,17 @@ function checkKing(stones: number[][]) {
         stones[kingPos.row + 1][kingPos.col] == 2 &&
         stones[kingPos.row][kingPos.col - 1] == 2
     ) {
-        return (2); // team 2 has won!
+        return 2; // team 2 has won!
     }
 
-    // if on the edge, king is not touched by 4-side- rule
+    // if on the edge, king is not touched by 4-side-rule
     if (
         kingPos.row == 0 ||
         kingPos.row == stones.length - 1 ||
         kingPos.col == 0 ||
         kingPos.col == stones.length - 1
     )
-        return (stones);
+        return stones;
 
     // check if surrounded on all sides
     if (
@@ -80,9 +90,9 @@ function checkKing(stones: number[][]) {
         stones[kingPos.row][kingPos.col - 1] == 2 &&
         stones[kingPos.row][kingPos.col + 1] == 2
     ) {
-        return (2); // team 2 has won!
+        return 2; // team 2 has won!
     }
-    return (stones);
+    return stones;
 }
 
 // simple case: our move encapsuled an enemy stone
@@ -135,5 +145,5 @@ function checkSimpleBeating(
         }
     }
 
-    return (stones);
+    return stones;
 }
