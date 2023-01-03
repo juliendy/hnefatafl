@@ -1,7 +1,7 @@
 import { Stone } from "./stone";
 
 export function getPath(from: Stone, to: Stone) {
-    var intersectingCells: Stone[];
+    let intersectingCells: Stone[];
     if (to.col == from.col) {
         // row is changing
         const stepLength = Math.abs(to.row - from.row);

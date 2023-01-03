@@ -56,7 +56,7 @@ export default function Game() {
 
             // generate new stone-layout
             // force deep copy
-            var tmpStones = actualStones.map((r) => r.map((i) => i));
+            let tmpStones = actualStones.map((r) => r.map((i) => i));
             if (path !== false) {
                 // update stones:
                 // set mouseover stones to -1
