@@ -55,7 +55,7 @@ export default function Board(props: {
             (
                 props.myteam.includes(item) ||
                 (item == 3 && props.myteam.includes(1))
-            ) && 
+            ) &&
             (
                 item == props.whichTeamIsOn ||
                 (item == 3 && props.whichTeamIsOn == 1)
@@ -69,8 +69,8 @@ export default function Board(props: {
         gap-2 md:gap-4 lg:gap-4 xl:gap-5 2xl:gap-5
         w-full h-full`;
 
-    if (props.stones.length == 11) gridClasses += " grid-cols-11";
-    if (props.stones.length == 9) gridClasses += " grid-cols-9";
+    if(props.stones.length == 11) gridClasses += " grid-cols-11";
+    if(props.stones.length == 9) gridClasses += " grid-cols-9";
 
     return (
         <div className={gridClasses}>

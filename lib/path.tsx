@@ -41,5 +41,5 @@ export function moveStone(stones: number[][], from: Stone, to: Stone) {
         })
     );
 
-    return newStones;
+    return (newStones);
 }
