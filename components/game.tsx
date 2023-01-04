@@ -2,10 +2,23 @@ import Board from "../components/board";
 import Menu from "../components/menu";
 import { useEffect, useState } from "react";
 import { isValidMove } from "../lib/moveValidity";
-import { defaultStones, tablut, hnefatafl, brandubh } from "../lib/initialSetup";
+import {
+    defaultStones,
+    tablut,
+    hnefatafl,
+    brandubh,
+} from "../lib/initialSetup";
 import { Stone } from "../lib/stone";
 import { moveStone } from "../lib/path";
 import { checkBeating } from "../lib/beating";
+import {
+    saveGameToLocalStroage,
+    loadGameFromLocalStroage,
+    savedGame,
+} from "../lib/savegame";
+
+import Snackbar from "@mui/material/Snackbar";
+import Alert from "@mui/material/Alert";
 
 export default function Game(props: { setBgColor: Function }) {
     const [selectedStone, setSelectedStone] = useState<Stone | null>(null);
@@ -14,9 +27,36 @@ export default function Game(props: { setBgColor: Function }) {
     const [validPathInSelection, setValidPathInSelection] = useState(false);
     const [whichTeamIsOn, setWhichTeamIsOn] = useState(2);
     const [winnerTeam, setWinnerTeam] = useState<number | null>(null);
-    const [showMenu, setShowMenu] = useState(true)
+    const [showMenu, setShowMenu] = useState(true);
+    const [snackbarIsOpen, setSnackbarIsOpen] = useState(false);
+    const [snackbarMessage, setSnackbarMessage] = useState("");
 
     const myteam = [1, 2];
+
+    const handleSnackbarClose = () => {
+        setSnackbarIsOpen(false);
+    };
+
+    const saveGame = (gameName: string) => {
+        saveGameToLocalStroage(gameName, actualStones, whichTeamIsOn);
+
+        setShowMenu(false);
+        setSnackbarMessage('Game saved as "' + gameName + '"!');
+        setSnackbarIsOpen(true);
+    };
+
+    const loadGame = (gameName: string) => {
+        const newgame: savedGame | undefined =
+            loadGameFromLocalStroage(gameName);
+        if (newgame === undefined) return;
+
+        setActualStones(newgame.stones);
+        setVisibleStones(newgame.stones);
+        setWhichTeamIsOn(newgame.whichTeamIsOn);
+        setShowMenu(false);
+        setSnackbarMessage('Game "' + gameName + '" loaded!');
+        setSnackbarIsOpen(true);
+    };
 
     const restartGame = (stones: number[][]) => {
         setSelectedStone(null);
@@ -122,16 +162,32 @@ export default function Game(props: { setBgColor: Function }) {
     };
 
     useEffect(() => {
-        if (whichTeamIsOn == 1) props.setBgColor("bg-emerald-50");
-        if (whichTeamIsOn == 2) props.setBgColor("bg-rose-50");
+        if (whichTeamIsOn == 1) props.setBgColor(" bg-emerald-50");
+        if (whichTeamIsOn == 2) props.setBgColor(" bg-rose-50");
     }, [whichTeamIsOn]);
 
     return (
         <>
+            <Snackbar
+                anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+                open={snackbarIsOpen}
+                autoHideDuration={2000}
+                onClose={handleSnackbarClose}
+            >
+                <Alert
+                    onClose={handleSnackbarClose}
+                    severity="success"
+                    sx={{ width: "100%" }}
+                >
+                    {snackbarMessage}
+                </Alert>
+            </Snackbar>
             <Menu
                 showMenu={showMenu}
                 setShowMenu={setShowMenu}
                 restartGame={restartGame}
+                saveGame={(gameName: string) => saveGame(gameName)}
+                loadGame={(gameName: string) => loadGame(gameName)}
             />
             <div className="text-6xl lg:text-8xl xl:text-8xl 2xl:text-8xl text-center pt-5">
                 <a href="#" onClick={() => setShowMenu(true)}>
