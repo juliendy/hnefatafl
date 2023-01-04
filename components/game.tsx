@@ -16,7 +16,7 @@ export default function Game(props: { setBgColor: Function }) {
 
     const myteam = [1, 2];
 
-    const restartGame = (stones: number[][] = defaultStones) => {
+    const restartGame = (stones: number[][]) => {
         setSelectedStone(null);
         setVisibleStones(stones);
         setActualStones(stones);
@@ -184,7 +184,7 @@ export default function Game(props: { setBgColor: Function }) {
                         {winnerTeam == 2 ? "RED" : "GREEN"} has won!
                     </p>
                     <p className="my-20">
-                        <a href="#" onClick={restartGame}>
+                        <a href="#" onClick={() => restartGame(defaultStones)}>
                             Restart game
                         </a>
                     </p>
