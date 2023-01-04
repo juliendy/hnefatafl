@@ -27,7 +27,7 @@ export default function Menu(props: {
                 <div className="bg-white p-10 rounded-3xl bg-opacity-50">
                     <div className="text-6xl text-center pb-5">hnefatafl</div>
                     <div
-                        className="text-3xl text-left"
+                        className="text-lg lg:text-2xl xl:text-2xl 2xl:text-2xl text-left"
                         style={{ fontFamily: "Roboto Mono" }}
                     >
                         Restart game as ...
@@ -46,6 +46,11 @@ export default function Menu(props: {
                         <br />
                         <a href="#" onClick={() => newGame(hnefatafl)}>
                             - Hnefatafl (11x11)
+                        </a>
+                        <br />
+                        <br />
+                        <a href="#" onClick={() => props.setShowMenu(false)}>
+                            Close Menu
                         </a>
                     </div>
                 </div>

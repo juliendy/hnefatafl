@@ -14,7 +14,7 @@ export default function Game(props: { setBgColor: Function }) {
     const [validPathInSelection, setValidPathInSelection] = useState(false);
     const [whichTeamIsOn, setWhichTeamIsOn] = useState(2);
     const [winnerTeam, setWinnerTeam] = useState<number | null>(null);
-    const [showMenu, setShowMenu] = useState(false)
+    const [showMenu, setShowMenu] = useState(true)
 
     const myteam = [1, 2];
 
