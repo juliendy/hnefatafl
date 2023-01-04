@@ -1,4 +1,5 @@
 import Board from "../components/board";
+import Menu from "../components/menu";
 import { useEffect, useState } from "react";
 import { isValidMove } from "../lib/moveValidity";
 import { defaultStones, tablut, hnefatafl, brandubh } from "../lib/initialSetup";
@@ -13,6 +14,7 @@ export default function Game(props: { setBgColor: Function }) {
     const [validPathInSelection, setValidPathInSelection] = useState(false);
     const [whichTeamIsOn, setWhichTeamIsOn] = useState(2);
     const [winnerTeam, setWinnerTeam] = useState<number | null>(null);
+    const [showMenu, setShowMenu] = useState(false)
 
     const myteam = [1, 2];
 
@@ -126,6 +128,16 @@ export default function Game(props: { setBgColor: Function }) {
 
     return (
         <>
+            <Menu
+                showMenu={showMenu}
+                setShowMenu={setShowMenu}
+                restartGame={restartGame}
+            />
+            <div className="text-6xl text-center pt-5">
+                <a href="#" onClick={() => setShowMenu(true)}>
+                    hnefatafl
+                </a>
+            </div>
             <div className="grid place-content-center mt-5">
                 <div
                     className="aspect-square  
@@ -146,25 +158,6 @@ export default function Game(props: { setBgColor: Function }) {
                         whichTeamIsOn={whichTeamIsOn}
                     />
                 </div>
-                <div
-                    className="text-sm text-gray-600 "
-                    style={{ fontFamily: "Roboto Mono" }}
-                >
-                    Restart game as ...
-                    <br />
-                    <br />
-                    <a href="#" onClick={() => restartGame(brandubh)}>
-                        Brandubh (7x7)
-                    </a>{" "}
-                    &nbsp;
-                    <a href="#" onClick={() => restartGame(tablut)}>
-                        Tablut (9x9)
-                    </a>{" "}
-                    &nbsp;
-                    <a href="#" onClick={() => restartGame(hnefatafl)}>
-                        Hnefatafl (11x11)
-                    </a>
-                </div>
             </div>
             <div
                 className={
@@ -180,9 +173,7 @@ export default function Game(props: { setBgColor: Function }) {
                 }
             >
                 <div className="grid place-content-center h-full w-full text-6xl text-center">
-                    <p>
-                        {winnerTeam == 2 ? "RED" : "GREEN"} has won!
-                    </p>
+                    <p>{winnerTeam == 2 ? "RED" : "GREEN"} has won!</p>
                     <p className="my-20">
                         <a href="#" onClick={() => restartGame(defaultStones)}>
                             Restart game
