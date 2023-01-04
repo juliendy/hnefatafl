@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { tablut, hnefatafl, brandubh, ardri } from "../lib/initialSetup";
 
 export default function Menu(props: {
@@ -5,6 +6,9 @@ export default function Menu(props: {
     showMenu: boolean;
     setShowMenu: Function;
 }) {
+
+    const [showRestart, setShowRestart] = useState(false);
+
     const newGame = (stones: number[][]) => {
         props.restartGame(stones);
         props.setShowMenu(false);
@@ -30,25 +34,32 @@ export default function Menu(props: {
                         className="text-lg lg:text-2xl xl:text-2xl 2xl:text-2xl text-left"
                         style={{ fontFamily: "Roboto Mono" }}
                     >
-                        Restart game as ...
-                        <br />
-                        <a href="#" onClick={() => newGame(brandubh)}>
-                            - Brandubh (7x7)
+                        <a
+                            href="#"
+                            onClick={() => setShowRestart(!showRestart)}
+                        >
+                            Restart game
                         </a>
                         <br />
-                        <a href="#" onClick={() => newGame(ardri)}>
-                            - Ard Ri (7x7)
-                        </a>
-                        <br />
-                        <a href="#" onClick={() => newGame(tablut)}>
-                            - Tablut (9x9)
-                        </a>
-                        <br />
-                        <a href="#" onClick={() => newGame(hnefatafl)}>
-                            - Hnefatafl (11x11)
-                        </a>
-                        <br />
-                        <br />
+                        <div className={showRestart ? "" : "hidden"}>
+                            <a href="#" onClick={() => newGame(brandubh)}>
+                                - Brandubh (7x7)
+                            </a>
+                            <br />
+                            <a href="#" onClick={() => newGame(ardri)}>
+                                - Ard Ri (7x7)
+                            </a>
+                            <br />
+                            <a href="#" onClick={() => newGame(tablut)}>
+                                - Tablut (9x9)
+                            </a>
+                            <br />
+                            <a href="#" onClick={() => newGame(hnefatafl)}>
+                                - Hnefatafl (11x11)
+                            </a>
+                            <br />
+                            <br />
+                        </div>
                         <a href="#" onClick={() => props.setShowMenu(false)}>
                             Close Menu
                         </a>

@@ -133,7 +133,7 @@ export default function Game(props: { setBgColor: Function }) {
                 setShowMenu={setShowMenu}
                 restartGame={restartGame}
             />
-            <div className="text-6xl text-center pt-5">
+            <div className="text-6xl lg:text-8xl xl:text-8xl 2xl:text-8xl text-center pt-5">
                 <a href="#" onClick={() => setShowMenu(true)}>
                     hnefatafl
                 </a>
