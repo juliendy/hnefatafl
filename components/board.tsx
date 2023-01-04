@@ -1,5 +1,5 @@
-import { defaultStones } from '../lib/initialSetup'
-import { Stone } from '../lib/stone'
+import { defaultStones } from "../lib/initialSetup";
+import { Stone } from "../lib/stone";
 
 export default function Board(props: {
     stones: number[][];
@@ -52,15 +52,12 @@ export default function Board(props: {
             // option 2: we're choosing a stone to move
             // --> offer it
             props.selectedStone === null &&
-            (
-                props.myteam.includes(item) ||
-                (item == 3 && props.myteam.includes(1))
-            ) &&
-            (
-                item == props.whichTeamIsOn ||
-                (item == 3 && props.whichTeamIsOn == 1)
-            )
-        ) styles += " hover:scale-125";
+            (props.myteam.includes(item) ||
+                (item == 3 && props.myteam.includes(1))) &&
+            (item == props.whichTeamIsOn ||
+                (item == 3 && props.whichTeamIsOn == 1))
+        )
+            styles += " hover:scale-125";
 
         return styles;
     };
@@ -69,8 +66,9 @@ export default function Board(props: {
         gap-2 md:gap-4 lg:gap-4 xl:gap-5 2xl:gap-5
         w-full h-full`;
 
-    if(props.stones.length == 11) gridClasses += " grid-cols-11";
-    if(props.stones.length == 9) gridClasses += " grid-cols-9";
+    if (props.stones.length == 11) gridClasses += " grid-cols-11";
+    if (props.stones.length == 9) gridClasses += " grid-cols-9";
+    if (props.stones.length == 7) gridClasses += " grid-cols-7";
 
     return (
         <div className={gridClasses}>
