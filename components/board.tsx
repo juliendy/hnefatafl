@@ -77,13 +77,18 @@ export default function Board(props: {
         return styles;
     };
 
-    let gridClasses = `grid 
+    var gridClasses = `grid 
         gap-2 md:gap-4 lg:gap-4 xl:gap-5 2xl:gap-5
         w-full h-full`;
 
     if (props.stones.length == 11) gridClasses += " grid-cols-11";
     if (props.stones.length == 9) gridClasses += " grid-cols-9";
     if (props.stones.length == 7) gridClasses += " grid-cols-7";
+    if (props.stones.length == 19) {
+        var gridClasses = `grid 
+        gap-1 md:gap-2 lg:gap-2 xl:gap-3 2xl:gap-3
+        w-full h-full grid-cols-19`;
+    }
 
     return (
         <div className={gridClasses}>

@@ -1,4 +1,11 @@
-import { tablut, hnefatafl, brandubh, ardri } from "../lib/initialSetup";
+import {
+    tablut,
+    hnefatafl,
+    brandubh,
+    ardri,
+    tawlbwrdd,
+    aleaEvangelii,
+} from "../lib/initialSetup";
 import { useEffect, useState } from "react";
 import { getAllSavedGames } from "../lib/savegame";
 import TextField from "@mui/material/TextField";
@@ -171,6 +178,14 @@ export default function Menu(props: {
                                 - Hnefatafl (11x11)
                             </a>
                             <br />
+                            <a href="#" onClick={() => newGame(tawlbwrdd)}>
+                                - Tawlbwrdd (11x11)
+                            </a>
+                            <br />
+                            <a href="#" onClick={() => newGame(aleaEvangelii)}>
+                                - Alea Evangelii (19x19)
+                            </a>
+                            <br />
                             <br />
                             <a
                                 href="#"
@@ -224,14 +239,16 @@ export default function Menu(props: {
                                 >
                                     Close Menu
                                 </a>
-                                <br />
-                                <br />
-                                <div className="text-sm">
-                                    <a href="https://www.github.com/juliendy">
-                                        coded by jdy
-                                    </a>
-                                </div>
                             </div>
+                        </div>
+                        <div className="border-t border-gray-300 w-full my-5"></div>
+                        <div
+                            className="text-sm"
+                            style={{ fontFamily: "Roboto Mono" }}
+                        >
+                            <a href="https://www.github.com/juliendy">
+                                coded by juliendy
+                            </a>
                         </div>
                     </div>
                 </div>
