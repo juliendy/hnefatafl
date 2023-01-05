@@ -148,21 +148,15 @@ function getMoveScore(
         var afterBeating = checkBeating(stonesAfterMove, myteam, moves[i].to);
 
         // default value of move: 0
-        if (afterBeating === 2) {
-            // team 2 has won
+        if (!Array.isArray(afterBeating)) {
+            // a team has won
             ret[i].scoreAfterMove = scoreTemplate.gameWon;
-        } else if (Array.isArray(afterBeating)) {
-            const team1HasWon = isKingInCorner(afterBeating);
-            if (team1HasWon) {
-                ret[i].scoreAfterMove = scoreTemplate.gameWon;
-            } else {
-                // to see if we beat an opponent figure, calculate sum of stones on board
-                // if the sum got smaller, we apparanently beat someone
-                var gameValueAfterMove = getBoardValue(afterBeating);
-                if (gameValueAfterMove < gameValueBeforeMove)
-                    ret[i].scoreAfterMove = scoreTemplate.stoneBeaten;
-                ret[i].stonesAfterMove = afterBeating;
-            }
+        } else {
+            // to see if we beat an opponent figure, calculate sum of stones on board
+            // if the sum got smaller, we apparanently beat someone
+            var gameValueAfterMove = getBoardValue(afterBeating)
+            if (gameValueAfterMove < gameValueBeforeMove) ret[i].scoreAfterMove = scoreTemplate.stoneBeaten
+            ret[i].stonesAfterMove = afterBeating
         }
     }
 

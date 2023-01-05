@@ -25,10 +25,11 @@ export default function Game(props: { setBgColor: Function }) {
     const [selectedStone, setSelectedStone] = useState<Stone | null>(null);
     const [visibleStones, setVisibleStones] = useState(defaultStones);
     const [actualStones, setActualStones] = useState(defaultStones);
+    const [initialStones, setInitialStones] = useState(defaultStones);
     const [validPathInSelection, setValidPathInSelection] = useState(false);
     const [whichTeamIsOn, setWhichTeamIsOn] = useState(2);
     const [winnerTeam, setWinnerTeam] = useState<number | null>(null);
-    const [showMenu, setShowMenu] = useState(false);
+    const [showMenu, setShowMenu] = useState(true);
     const [snackbarIsOpen, setSnackbarIsOpen] = useState(false);
     const [snackbarMessage, setSnackbarMessage] = useState("");
     const [myteam, setMyTeam] = useState([2]);
@@ -53,11 +54,13 @@ export default function Game(props: { setBgColor: Function }) {
         if (newgame === undefined) return;
 
         setActualStones(newgame.stones);
+        setInitialStones(newgame.stones)
         setVisibleStones(newgame.stones);
         setWhichTeamIsOn(newgame.whichTeamIsOn);
         setShowMenu(false);
         setSnackbarMessage('Game "' + gameName + '" loaded!');
         setSnackbarIsOpen(true);
+        setShowThinkingIndicator(false)
     };
 
     const restartGame = (
@@ -72,11 +75,13 @@ export default function Game(props: { setBgColor: Function }) {
             setMyTeam([1, 2]);
         }
         setSelectedStone(null);
-        setVisibleStones(stones);
         setActualStones(stones);
+        setVisibleStones(stones);
+        setInitialStones(stones)
         setValidPathInSelection(false);
         setWhichTeamIsOn(2);
         setWinnerTeam(null);
+        setShowThinkingIndicator(false)
 
         if (isAIgame && myTeam == 1) {
             // AI starts!
@@ -222,7 +227,7 @@ export default function Game(props: { setBgColor: Function }) {
                 }
             >
                 <a href="#" onClick={() => setShowMenu(true)}>
-                    h n e f a t a f l
+                    hnefatafl
                 </a>
             </div>
             <div
@@ -268,7 +273,7 @@ export default function Game(props: { setBgColor: Function }) {
                         <a
                             href="#"
                             onClick={() =>
-                                restartGame(defaultStones, AImatch, myteam[0])
+                                restartGame(initialStones, AImatch, myteam[0])
                             }
                         >
                             Restart game
