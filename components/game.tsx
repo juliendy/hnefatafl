@@ -28,12 +28,12 @@ export default function Game(props: { setBgColor: Function }) {
     const [validPathInSelection, setValidPathInSelection] = useState(false);
     const [whichTeamIsOn, setWhichTeamIsOn] = useState(2);
     const [winnerTeam, setWinnerTeam] = useState<number | null>(null);
-    const [showMenu, setShowMenu] = useState(true);
+    const [showMenu, setShowMenu] = useState(false);
     const [snackbarIsOpen, setSnackbarIsOpen] = useState(false);
     const [snackbarMessage, setSnackbarMessage] = useState("");
-
     const [myteam, setMyTeam] = useState([2]);
     const [AImatch, setAImatch] = useState(true); // playing against the computer?
+    const [showThinkingIndicator, setShowThinkingIndicator] = useState(false);
 
     const handleSnackbarClose = () => {
         setSnackbarIsOpen(false);
@@ -170,9 +170,14 @@ export default function Game(props: { setBgColor: Function }) {
         }
     };
 
-    const generateAImove = () => {
-        const aiMove = AIGetNextMove(actualStones, whichTeamIsOn);
-        moveStone(actualStones, aiMove.from, aiMove.to);
+    const generateAImove = async () => {
+        setShowThinkingIndicator(true);
+        // small timeout to allow for finishing of rendering
+        setTimeout(() => {
+            const aiMove = AIGetNextMove(actualStones, whichTeamIsOn);
+            moveStone(actualStones, aiMove.from, aiMove.to);
+            setShowThinkingIndicator(false);
+        }, 200);
     };
 
     // listen to change in who player is on
@@ -217,14 +222,17 @@ export default function Game(props: { setBgColor: Function }) {
                 }
             >
                 <a href="#" onClick={() => setShowMenu(true)}>
-                    hnefatafl
+                    h n e f a t a f l
                 </a>
             </div>
-            <div className="grid place-content-center mt-5">
+            <div
+                className={
+                    "grid place-content-center mt-5 duration-200 " +
+                    (showThinkingIndicator ? " opacity-50" : "")
+                }
+            >
                 <div
-                    className="aspect-square  
-              p-3 md:p-5 lg:p-5 xl:p-5 2xl:p-5
-      "
+                    className="aspect-square p-3 md:p-5 lg:p-5 xl:p-5 2xl:p-5"
                     style={{
                         width: "100vh",
                         maxWidth: "min(100vw, 800px)",
@@ -257,7 +265,12 @@ export default function Game(props: { setBgColor: Function }) {
                 <div className="grid place-content-center h-full w-full text-6xl text-center">
                     <p>{winnerTeam == 2 ? "RED" : "GREEN"} has won!</p>
                     <p className="my-20">
-                        <a href="#" onClick={() => restartGame(defaultStones, AImatch, myteam[0])}>
+                        <a
+                            href="#"
+                            onClick={() =>
+                                restartGame(defaultStones, AImatch, myteam[0])
+                            }
+                        >
                             Restart game
                         </a>
                     </p>
