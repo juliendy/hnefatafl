@@ -257,7 +257,7 @@ export default function Game(props: { setBgColor: Function }) {
                 <div className="grid place-content-center h-full w-full text-6xl text-center">
                     <p>{winnerTeam == 2 ? "RED" : "GREEN"} has won!</p>
                     <p className="my-20">
-                        <a href="#" onClick={() => restartGame(defaultStones)}>
+                        <a href="#" onClick={() => restartGame(defaultStones, AImatch, myteam[0])}>
                             Restart game
                         </a>
                     </p>
