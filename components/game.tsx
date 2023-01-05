@@ -189,7 +189,13 @@ export default function Game(props: { setBgColor: Function }) {
                 saveGame={(gameName: string) => saveGame(gameName)}
                 loadGame={(gameName: string) => loadGame(gameName)}
             />
-            <div className="text-6xl lg:text-8xl xl:text-8xl 2xl:text-8xl text-center pt-5">
+            <div
+                className={
+                    `text-6xl lg:text-8xl xl:text-8xl 2xl:text-8xl text-center pt-5
+                            bg-gradient-to-b from-white ` +
+                    (whichTeamIsOn == 1 ? "bg-emerald-50" : "bg-rose-50")
+                }
+            >
                 <a href="#" onClick={() => setShowMenu(true)}>
                     hnefatafl
                 </a>
