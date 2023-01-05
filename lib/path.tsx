@@ -31,7 +31,7 @@ export function getPath(from: Stone, to: Stone) {
     return intersectingCells;
 }
 
-export function moveStone(stones: number[][], from: Stone, to: Stone) {
+export function getStonesAfterMovement(stones: number[][], from: Stone, to: Stone) {
     const newStones = stones.map((row, rid) =>
         row.map((col, cid) => {
             if (!from.value) return 0; // just for type deduction
@@ -41,5 +41,5 @@ export function moveStone(stones: number[][], from: Stone, to: Stone) {
         })
     );
 
-    return (newStones);
+    return newStones;
 }
