@@ -11,11 +11,17 @@ URL: Updated soon...
 ## preview
 ![Menu](https://i.imgur.com/nA2RMk1.png)
 ![Different board set-ups](https://i.imgur.com/LaXBl2v.png)
-![Board: Brandubh 7x7](blob:https://imgur.com/2814fb43-8838-464d-bf5b-67c2d48b418a)
+Board: Brandubh 7x7
+![Board: Brandubh 7x7](https://i.imgur.com/0DIubgv.png)
+Board: Ard Ri7x7
 ![Board: Ard Ri7x7](https://i.imgur.com/r7n0fJo.png)
+Board: Tablut9x9
 ![Board: Tablut9x9](https://i.imgur.com/dF7sqyy.png)
+Board: Hnefatafl 11x11
 ![Board: hnefatafl 11x11](https://i.imgur.com/NRCCCUZ.png)
+Board: Tawlbwrdd 11x11
 ![Board: Tawlbwrdd 11x11](https://i.imgur.com/17NzAvp.png)
+Board: Alea Evangelii 19x19
 ![Board: Alea Evangelii 19x19](https://i.imgur.com/0OdwWQu.png)
 ### todos future (big changes)
  - [ ] Validation of ther ruleset with someone more involved with the game itself 
