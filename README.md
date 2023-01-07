@@ -9,7 +9,14 @@ If you'd like to contribute, feel free to reach out. Current open points include
 URL: Updated soon...
 
 ## preview
-![]() Updated soon...
+![Menu](https://i.imgur.com/nA2RMk1.png)
+![Different board set-ups](https://i.imgur.com/LaXBl2v.png)
+![Board: Brandubh 7x7](blob:https://imgur.com/2814fb43-8838-464d-bf5b-67c2d48b418a)
+![Board: Ard Ri7x7](https://i.imgur.com/r7n0fJo.png)
+![Board: Tablut9x9](https://i.imgur.com/dF7sqyy.png)
+![Board: hnefatafl 11x11](https://i.imgur.com/NRCCCUZ.png)
+![Board: Tawlbwrdd 11x11](https://i.imgur.com/17NzAvp.png)
+![Board: Alea Evangelii 19x19](https://i.imgur.com/0OdwWQu.png)
 ### todos future (big changes)
  - [ ] Validation of ther ruleset with someone more involved with the game itself 
  - [ ] Building a better AI - currently, it's severly limited by the lookahead as it does a simple search. I'd love to train an agent-based model, or at least improve upon the current search-based algorithm.
@@ -23,11 +30,11 @@ URL: Updated soon...
 - [ ] Link preventDefault to avoid "#" at end of URL
 
 ### todos (now)
-- [ ] a games component menu to make everything more functional.
-- [ ] games mode switch
-- [ ] load/save game
-- [ ] multiplayer + search optimisation
-- [ ] dumbed down AI at first, then attempt to make it 'smarter'
+- [x] a games component menu to make everything more functional.
+- [x] games mode switch
+- [x] load/save game
+- [x] multiplayer + search optimisation
+- [x] dumbed down AI at first, then attempt to make it 'smarter'
 
 ## setup project
 
