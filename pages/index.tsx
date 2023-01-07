@@ -1,22 +1,27 @@
-import type { NextPage } from "next";
-import Head from "next/head";
-import { useState } from "react";
-import Game from "../components/game";
+import type { NextPage } from 'next'
+import Head from 'next/head'
+import { useEffect, useState } from 'react'
+import Game from '../components/game'
 
 const Home: NextPage = () => {
     const [bgColor, setBgColor] = useState("bg-red-50")
-    const classNames = "h-screen w-screen" + bgColor
+    const [titleAppendix, setTitleAppendix] = useState('')
+    const [fullTitle, setFullTitle] = useState('hnefatafl')
+
+    useEffect(() => {
+        setFullTitle('hnefatafl' + titleAppendix)
+    }, [titleAppendix])
 
     return (
         <>
             <Head>
-                <title>hnefatafl</title>
+                <title>{fullTitle}</title>
             </Head>
-            <div className={classNames}>
-                <Game setBgColor={setBgColor} />
+            <div className={'h-screen w-screen duration-200 ' + bgColor}>
+                <Game setBgColor={setBgColor} setTitleAppendix={setTitleAppendix} />
             </div>
         </>
-    );
-};
+    )
+}
 
-export default Home;
+export default Home
