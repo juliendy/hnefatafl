@@ -36,11 +36,11 @@ Board: Alea Evangelii 19x19
 - [ ] Link preventDefault to avoid "#" at end of URL
 
 ### todos (now)
-- [x] a games component menu to make everything more functional.
-- [x] games mode switch
-- [x] load/save game
-- [x] multiplayer + search optimisation
-- [x] dumbed down AI at first, then attempt to make it 'smarter'
+- [x] Games component menu to make everything more functional.
+- [x] Games mode switch
+- [x] Load/Save game
+- [x] Multiplayer + Search Optimisation
+- [x] Dumbed down AI at first, then attempt to make it 'smarter'
 
 ## setup project
 
